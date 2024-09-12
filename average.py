@@ -1,6 +1,6 @@
 import text_utils
 import argparse
-def line_count(filename):
+def average_count(filename):
     # Opens the file.
     file = open(filename, "r")
     # Lists all of the lines.
@@ -16,14 +16,14 @@ def line_count(filename):
     # Closes the file.
     file.close()
     # Calculate the average amount of words in the file.
-    return(wordcount/line_count1)
+    return int(wordcount/line_count1)
     
 def main():
     parser = argparse.ArgumentParser(description='Count lines in a file.')
     parser.add_argument('filename', help='The fine to count lines from')
     args = parser.parse_args()
 
-    count = line_count(args.filename)
+    count = average_count(args.filename)
     # Prints the average amount of words in the file.
     print(f"Average words per line: {count}")
 
