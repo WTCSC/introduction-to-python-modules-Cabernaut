@@ -1,12 +1,31 @@
-"""
-Import the text_utils module you created and calculate the average number of
-words per line in a given text file. The text file that will be used to test
-this is the text file called "sample.txt" (located in the same directory as
-this exercise). The average number of words per line should be rounded down to
-the nearest integer.
+import text_utils
+import argparse
+def average_count(filename):
+    # Opens the file.
+    file = open(filename, "r")
+    # Lists all of the lines.
+    lines = file.readlines()
+    # Counts the amount of lines.
+    line_count1 = len(lines)
+    # Resets the count back to the beginning of the file.
+    file.seek(0)
+    # Reads all of the words in the file.
+    words = (file.read())
+    # Counts the amount of words in the file.
+    wordcount = text_utils.count_words(words)
+    # Closes the file.
+    file.close()
+    # Calculate the average amount of words in the file.
+    return int(wordcount/line_count1)
+    
+def main():
+    parser = argparse.ArgumentParser(description='Count lines in a file.')
+    parser.add_argument('filename', help='The fine to count lines from')
+    args = parser.parse_args()
 
-Print the average number of words per line in the text file in the following
-format:
+    count = average_count(args.filename)
+    # Prints the average amount of words in the file.
+    print(f"Average words per line: {count}")
 
-"Average words per line: [average]"
-"""
+if __name__ == '__main__':
+    main()
